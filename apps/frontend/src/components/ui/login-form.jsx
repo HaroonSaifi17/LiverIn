@@ -112,7 +112,11 @@ export function LoginForm({
               className="underline underline-offset-2 text-muted-foreground hover:text-primary"
               onClick={(e) => {
                 e.preventDefault();
-                onForgotPassword?.();
+                if (onForgotPassword) {
+                  onForgotPassword();
+                } else {
+                  console.log("Forgot password clicked");
+                }
               }}
             >
               Forgot password?
@@ -123,14 +127,7 @@ export function LoginForm({
 
       <div className="text-center text-sm text-muted-foreground">
         Don't have an account?{" "}
-        <NavLink
-          to="/signup"
-          className="text-blue-600 underline"
-          onClick={(e) => {
-            e.preventDefault();
-            onSignUpClick?.();
-          }}
-        >
+        <NavLink to={"/signup"} className={'text-blue-600 hover:underline'} variant="link" size="sm" onClick={onSignUpClick}>
           Sign up on WorkAura
         </NavLink>
       </div>

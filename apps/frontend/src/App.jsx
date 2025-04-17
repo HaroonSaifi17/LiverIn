@@ -10,6 +10,7 @@ import Product from "./Pages/Product";
 import Features from "./Pages/Features";
 import Category from "./Pages/Category";
 import Signup from "./Pages/Signup";
+import Dashboard from "./Pages/Dashboard";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard/>}/>
       {/* Routes without Navbar */}
     </Routes>
   );
