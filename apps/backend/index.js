@@ -9,8 +9,8 @@ const port = process.env.PORT;
 app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-require("./setup/mongoose");
-require("./setup/passport");
+// require("./setup/mongoose");
+// require("./setup/passport");
 
 const errorMiddleware = (err, _req, res, _next) => {
   console.error("Error:", err.message);

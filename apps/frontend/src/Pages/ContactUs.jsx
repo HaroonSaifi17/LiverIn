@@ -1,9 +1,9 @@
-import CurvedPhone from "@/components/ui/CurvedPhone";
+
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 const ContactUs = () => {
   return (
-    <div className="mt-20 bg-white text-[#000066]">
+    <div className=" bg-white text-[#000066]">
       <section className="bg-[#000066] text-white py-20 px-6 sm:px-12">
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4">
@@ -34,7 +34,6 @@ const ContactUs = () => {
           </div>
         </div>
       </section>
-      <CurvedPhone/>
 
       <section className="bg-[#f0f4ff] py-20 px-6 sm:px-12">
         <div className="max-w-4xl mx-auto">

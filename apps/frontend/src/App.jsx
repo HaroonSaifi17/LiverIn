@@ -8,6 +8,7 @@ import AboutUs from "./Pages/AboutUs";
 import ContactUs from "./Pages/ContactUs";
 import Product from "./Pages/Product";
 import Features from "./Pages/Features";
+import Category from "./Pages/Category";
 
 const App = () => {
   return (
@@ -18,10 +19,10 @@ const App = () => {
         <Route path="/contactus" element={<ContactUs/>}/>
         <Route path="/product" element={<Product/>}/>
         <Route path="/features" element={<Features/>}/>
+        <Route path="/category/:category" element={<Category/>}/>
       </Route>
-
-      {/* Routes without Navbar */}
       <Route path="/login" element={<Login />} />
+      {/* Routes without Navbar */}
     </Routes>
   );
 };

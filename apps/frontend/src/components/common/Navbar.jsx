@@ -9,19 +9,20 @@ const navigation = [
   { name: 'Features', path:"/features"},
   { name: 'About Us', path:"/about"},
   { name: 'Contact Us', path:"/contactus"},
+
 ]
 
 const Navbar = () => {
  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
-    <div className="w-full">
-      <header className="absolute inset-x-0 top-0 z-50">
+    <div className="w-full ">
+      <header className="absolute  inset-x-0 top-0 z-50">
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-6 lg:px-8"
         >
           <div className="flex lg:flex-1">
-            <NavLink to={'/'} className="-m-1.5 p-1.5 pb-4">
+            <NavLink to={"/"} className="-m-1.5 p-1.5 pb-4">
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
@@ -96,7 +97,7 @@ const Navbar = () => {
                     <NavLink
                       to={item.path}
                       key={item.name}
-                      onClick={()=>setMobileMenuOpen(false)}
+                      onClick={() => setMobileMenuOpen(false)}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}

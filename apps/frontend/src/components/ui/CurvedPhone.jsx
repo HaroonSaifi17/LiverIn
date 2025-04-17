@@ -4,10 +4,10 @@ const CurvedPhone = () => {
   return (
     <div className="flex justify-center items-center p-8">
       {/* Outer Phone Container */}
-      <div className="bg-zinc-800 rounded-3xl shadow-xl overflow-hidden w-64 max-w-sm aspect-w-9 aspect-h-16 flex flex-col">
+      <div className="bg-zinc-800 rounded-3xl shadow-xl overflow-hidden w-74 max-w-sm aspect-w-9 aspect-h-16 flex flex-col">
         {/* Top Notch/Earpiece Area */}
-        <div className="bg-zinc-800 h-8 flex justify-center items-center relative">
-          <div className="w-12 h-1 rounded-full bg-zinc-400"></div>{" "}
+        <div className="bg-zinc-800 h-4 flex justify-center items-center relative">
+          {/* <div className="w-12 h-1 rounded-full bg-zinc-400"></div>{" "} */}
           {/* Earpiece */}
           {/* Optional: Front Camera Dot */}
           <div className="absolute left-1/2 -translate-x-1 top-1 w-2 h-2 rounded-full bg-zinc-300"></div>
@@ -31,7 +31,7 @@ const CurvedPhone = () => {
               />
             </svg>
             <span className="font-semibold text-lg text-gray-700">
-              WorkAura Pro
+              WorkAura
             </span>
             <svg
               className="w-6 h-6 text-gray-600"
@@ -49,16 +49,16 @@ const CurvedPhone = () => {
           </div>
 
           {/* Content Area (Replace with your Hackathon UI) */}
-          <div className="flex  flex-col items-center justify-center flex-grow w-full text-center text-gray-600 text-sm">
+          <div className="flex py-12 flex-col items-center justify-center flex-grow w-full text-center text-gray-600 text-sm">
             <img
-              src="https://placehold.co/80x80"
+              src="/assets/Images/women'sProfilePic.jpg"
               alt="Logo"
-              className="rounded-full shadow-md mb-3"
+              className="rounded-full w-[140px] h-[140px] object-cover shadow-md mb-5"
             />
-            <h2 className="font-semibold text-lg mb-1">
+            <h2 className="font-semibold text-lg mb-2">
               Connect & Earn with Crypto
             </h2>
-            <p className="mb-3">
+            <p className="mb-5">
               Find freelance gigs and talent. Payments in BNB & USDT.
             </p>
             <button className="bg-indigo-500 text-white rounded-full py-2 px-6 shadow-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1">
@@ -68,7 +68,7 @@ const CurvedPhone = () => {
           </div>
 
           {/* Bottom Navigation Bar (Optional) */}
-          <div className="bg-gray-100 w-full rounded-md p-2 mt-2 flex justify-around items-center">
+          <div className="bg-gray-100 w-full rounded-md p-1 mt-2 flex justify-around items-center">
             <svg
               className="w-6 h-6 text-gray-500"
               fill="none"
@@ -112,7 +112,7 @@ const CurvedPhone = () => {
         </div>
 
         {/* Bottom Chin/Speaker Area (Optional) */}
-        <div className="bg-zinc-800 h-6 rounded-b-3xl flex justify-center items-center">
+        <div className="bg-zinc-800 h-3 rounded-b-3xl flex justify-center items-center">
           <div className="w-16 h-1 rounded-full bg-zinc-400"></div>
         </div>
       </div>
