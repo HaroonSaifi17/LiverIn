@@ -1,16 +1,24 @@
 const express = require("express");
-const fetch = require("node-fetch");
 const cors = require("cors");
 require("dotenv").config();
-const asyncHandler = require("./setup/asyncHandler");
 
 const app = express();
 const port = process.env.PORT;
 app.use(cors({ origin: "*", optionsSuccessStatus: 200 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// require("./setup/mongoose");
-// require("./setup/passport");
+
+require("./setup/mongoose");
+require("./setup/passport");
+
+const categoryRoutes = require("./routes/category");
+const userRoutes = require("./routes/user");
+const gigRoutes = require("./routes/gig");
+const orderRoutes = require("./routes/order");
+app.use("/api", categoryRoutes);
+app.use("/api", userRoutes);
+app.use("/api", gigRoutes);
+app.use("/api", orderRoutes);
 
 const errorMiddleware = (err, _req, res, _next) => {
   console.error("Error:", err.message);

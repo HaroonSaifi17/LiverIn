@@ -1,15 +1,36 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: {
-    type: String,
-    required: true,
-    unique: true,
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    profileImg: {
+      type: String,
+      default: "",
+    },
+    accountType: {
+      type: String,
+      enum: ["freelancer", "recruiter", "client"],
+      required: true,
+    },
+    gigs: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Gig",
+      },
+    ],
   },
-  phoneNumber: String,
-  profileImg: String,
-});
+  {
+    timestamps: true,
+  },
+);
 
-const User = mongoose.model("users", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
