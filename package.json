@@ -1,41 +1,20 @@
 {
-  "name": "liverin",
+  "name": "WorkAura",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@headlessui/react": "^2.2.1",
-    "@heroicons/react": "^2.2.0",
-    "@radix-ui/react-label": "^2.1.3",
-    "@radix-ui/react-slot": "^1.2.0",
-    "@tailwindcss/vite": "^4.1.4",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.488.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^7.5.0",
-    "tailwind-merge": "^3.2.0",
-    "tailwindcss": "^4.1.4",
-    "tw-animate-css": "^1.2.5"
+    "dev:frontend": "npm run dev --workspace=apps/frontend",
+    "dev:backend": "npm run dev --workspace=apps/backend",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "check:frontend": "npm run prettier:check --workspace=apps/frontend && npm run lint --workspace=apps/frontend",
+    "check:backend": "npm run prettier:check --workspace=apps/backend && npm run lint --workspace=apps/backend",
+    "check": "npm run check:frontend && npm run check:backend"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/node": "^22.14.1",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react-swc": "^3.8.0",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "vite": "^6.2.0"
-  }
+    "concurrently": "^9.1.2"
+  },
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend"
+  ]
 }
