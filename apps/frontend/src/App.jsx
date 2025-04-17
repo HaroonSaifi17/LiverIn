@@ -9,6 +9,7 @@ import ContactUs from "./Pages/ContactUs";
 import Product from "./Pages/Product";
 import Features from "./Pages/Features";
 import Category from "./Pages/Category";
+import Signup from "./Pages/Signup";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/category/:category" element={<Category/>}/>
       </Route>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       {/* Routes without Navbar */}
     </Routes>
   );

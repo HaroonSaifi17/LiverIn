@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock, User } from "lucide-react"; // Using Lucide icons for better UI
+import { NavLink } from "react-router-dom";
 
 export function LoginForm({
   className,
@@ -113,9 +114,9 @@ export function LoginForm({
       </Card>
       <div className="text-center text-sm text-muted-foreground">
         Don't have an account?{" "}
-        <Button variant="link" size="sm" onClick={onSignUpClick}>
+        <NavLink to={"/signup"} className={'text-blue-600'} variant="link" size="sm" onClick={onSignUpClick}>
           Sign up on WorkAura
-        </Button>
+        </NavLink>
       </div>
     </div>
   );

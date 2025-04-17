@@ -12,7 +12,7 @@ const categories = [
 
 const CategoriesHeader = () => {
   return (
-    <div className="w-full mb-20 px-4 hide-navbar sm:px-10 lg:px-20 relative top-16 z-10 border-y overflow-x-auto">
+    <div className="w-full mb-20 px-4 sm:px-10 lg:px-20 relative top-16 z-10 border-y overflow-x-auto">
       <div className="flex sm:justify-between gap-6 sm:gap-10 min-w-max sm:min-w-full">
         {categories.map((category, index) => (
           <NavLink
@@ -21,9 +21,9 @@ const CategoriesHeader = () => {
             className={({ isActive }) =>
               `text-sm sm:text-base whitespace-nowrap py-3 border-b-4 ${
                 isActive
-                  ? "border-green-500 text-green-600 font-semibold"
+                  ? "border-blue-500 text-blue-600 font-semibold"
                   : "border-transparent text-gray-600"
-              } hover:cursor-pointer hover:border-green-400 transition`
+              } hover:cursor-pointer hover:border-blue-400 transition`
             }
           >
             {category.name}

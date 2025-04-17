@@ -15,16 +15,16 @@ const FreelancerCard = ({
   onProfileClick,
 }) => {
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border rounded-xl p-4 shadow-sm gap-4 w-full hover:shadow-md transition">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between border rounded-xl p-8 items-center shadow-sm gap-4 w-full hover:shadow-md hover:bg-blue-50 transition">
       {/* Left */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-grow">
         <img
           src={imgUrl}
           alt={name}
-          className="w-16 h-16 rounded-full object-cover"
+          className="w-32 h-32 rounded-full object-cover"
         />
 
-        <div>
+        <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="font-semibold text-lg">{name}</span>
             {isPro && (
@@ -60,8 +60,8 @@ const FreelancerCard = ({
       </div>
 
       {/* Right */}
-      <div className="flex flex-col sm:items-end items-start gap-2 w-full sm:w-auto">
-        <div className="flex gap-2 text-xl text-gray-600">
+      <div className="flex flex-col sm:items-start items-start gap-2 w-full sm:w-auto">
+        <div className="flex gap-2 sm:ml-14 text-xl text-gray-600">
           <button>
             <AiOutlineHeart />
           </button>
@@ -72,7 +72,7 @@ const FreelancerCard = ({
 
         <button
           onClick={onProfileClick}
-          className="border px-4 py-1.5 rounded-md text-sm font-medium hover:bg-gray-100"
+          className="border px-5 py-3 rounded-md text-sm font-medium bg-blue-400 text-white hover:bg-blue-500"
         >
           See profile
         </button>
