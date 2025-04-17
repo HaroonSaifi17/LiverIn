@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import axios from "axios";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    accountType: "", // ← added
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -15,14 +17,38 @@ const Signup = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
-    console.log("Signup data:", formData);
-    // Submit logic here
+
+    if (!formData.accountType) {
+      alert("Please select an account type!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL + "/users/register",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          accountType: formData.accountType, // ← include in payload
+        },
+      );
+      localStorage.setItem("token", response.data.token);
+      window.location.href = "/"; // redirect to dashboard
+
+      console.log(response.data);
+      // optionally reset the form or redirect
+    } catch (err) {
+      console.error("Registration error:", err);
+      alert(err.response?.data?.message || "Registration failed");
+    }
   };
 
   return (
@@ -33,6 +59,7 @@ const Signup = () => {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name */}
           <div>
             <label className="block text-sm mb-1">Name</label>
             <input
@@ -45,6 +72,7 @@ const Signup = () => {
             />
           </div>
 
+          {/* Email */}
           <div>
             <label className="block text-sm mb-1">Email</label>
             <input
@@ -57,6 +85,26 @@ const Signup = () => {
             />
           </div>
 
+          {/* Account Type */}
+          <div>
+            <label className="block text-sm mb-1">Account Type</label>
+            <select
+              name="accountType"
+              value={formData.accountType}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            >
+              <option value="" disabled>
+                Select account type
+              </option>
+              <option value="freelancer">Freelancer</option>
+              <option value="recruiter">Recruiter</option>
+              <option value="client">Client</option>
+            </select>
+          </div>
+
+          {/* Password */}
           <div className="relative">
             <label className="block text-sm mb-1">Password</label>
             <input
@@ -76,6 +124,7 @@ const Signup = () => {
             </button>
           </div>
 
+          {/* Confirm Password */}
           <div>
             <label className="block text-sm mb-1">Confirm Password</label>
             <input
@@ -88,6 +137,7 @@ const Signup = () => {
             />
           </div>
 
+          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 cursor-pointer transition"

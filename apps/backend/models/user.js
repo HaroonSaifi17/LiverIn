@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    password: String,
     accountType: {
       type: String,
       enum: ["freelancer", "recruiter", "client"],

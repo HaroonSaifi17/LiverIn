@@ -10,14 +10,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Lock, User } from "lucide-react"; // Using Lucide icons for better UI
+import { Mail, Lock } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 export function LoginForm({
   className,
-  onLoginSuccess, // Optional callback for successful login
-  onForgotPassword, // Optional callback for forgot password
-  onSignUpClick, // Optional callback for sign up
+  onLoginSuccess,
+  onForgotPassword,
+  onSignUpClick,
   ...props
 }) {
   const [email, setEmail] = useState("");
@@ -25,21 +26,27 @@ export function LoginForm({
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/login`,
+        { email, password },
+      );
+      onLoginSuccess?.(response.data);
+      localStorage.setItem("token", response.data.token);
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(
+        err.response?.data?.message ||
+          "Login failed. Please check your credentials and try again.",
+      );
+    } finally {
       setLoading(false);
-      if (email === "test@example.com" && password === "password") {
-        console.log("Login successful!");
-        if (onLoginSuccess) {
-          onLoginSuccess({ email });
-        }
-      } else {
-        setError("Invalid email or password.");
-      }
-    }, 1500);
+      window.location.href = "/"; // redirect to dashboard
+    }
   };
 
   return (
@@ -57,54 +64,55 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-4">
-              <div className="grid gap-2">
-                <Label htmlFor="email">
-                  <Mail className="mr-2 h-4 w-4 inline-block" />
-                  Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Your professional email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="password">
-                  <Lock className="mr-2 h-4 w-4 inline-block" />
-                  Password
-                </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Your secure password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              {error && <p className="text-sm text-red-500">{error}</p>}
-              <Button type="submit" className="w-full bg-blue-700" disabled={loading}>
-                {loading ? "Logging in..." : "Log In"}
-              </Button>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">
+                <Mail className="mr-2 h-4 w-4 inline-block" />
+                Email
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Your professional email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="password">
+                <Lock className="mr-2 h-4 w-4 inline-block" />
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Your secure password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {error && <p className="text-sm text-red-500">{error}</p>}
+
+            <Button
+              type="submit"
+              className="w-full bg-blue-700"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Log In"}
+            </Button>
           </form>
+
           <div className="mt-4 text-center text-sm">
             <a
               href="#forgot-password"
               className="underline underline-offset-2 text-muted-foreground hover:text-primary"
               onClick={(e) => {
                 e.preventDefault();
-                if (onForgotPassword) {
-                  onForgotPassword();
-                } else {
-                  console.log("Forgot password clicked");
-                  // Implement your forgot password navigation here
-                }
+                onForgotPassword?.();
               }}
             >
               Forgot password?
@@ -112,9 +120,17 @@ export function LoginForm({
           </div>
         </CardContent>
       </Card>
+
       <div className="text-center text-sm text-muted-foreground">
         Don't have an account?{" "}
-        <NavLink to={"/signup"} className={'text-blue-600'} variant="link" size="sm" onClick={onSignUpClick}>
+        <NavLink
+          to="/signup"
+          className="text-blue-600 underline"
+          onClick={(e) => {
+            e.preventDefault();
+            onSignUpClick?.();
+          }}
+        >
           Sign up on WorkAura
         </NavLink>
       </div>
