@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,7 @@ const DashboardContent = () => {
     price: "",
     deliveryTime: "",
   });
+  const [gigs, setGigs] = useState([]); // P7ca9
 
   const handleChange = (e) => {
     setForm({
@@ -61,8 +62,61 @@ const DashboardContent = () => {
       console.error("Failed to add gig", err);
     }
   };
-  const {user} = useUser();
+
+  const fetchGigs = async () => {
+    try {
+      const response = await axios.get(import.meta.env.VITE_API_URL + "/gigs", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setGigs(response.data);
+    } catch (err) {
+      console.error("Failed to fetch gigs", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchGigs();
+  }, []); // P3d81
+
+  const handleDeleteGig = async (gigId) => {
+    try {
+      await axios.delete(import.meta.env.VITE_API_URL + `/gigs/${gigId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setGigs(gigs.filter((gig) => gig._id !== gigId));
+    } catch (err) {
+      console.error("Failed to delete gig", err);
+    }
+  }; // P6826
+
+  const handleToggleGigStatus = async (gigId, isActive) => {
+    try {
+      await axios.patch(
+        import.meta.env.VITE_API_URL + `/gigs/${gigId}`,
+        { isActive: !isActive },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        },
+      );
+      setGigs(
+        gigs.map((gig) =>
+          gig._id === gigId ? { ...gig, isActive: !isActive } : gig,
+        ),
+      );
+    } catch (err) {
+      console.error("Failed to toggle gig status", err);
+    }
+  }; // P07e9
+
+  const { user } = useUser();
   console.log(user);
+
   return (
     <div className="max-h-[calc(100vh-78px)] overflow-y-scroll">
       <div className="flex justify-between items-center mb-4">
@@ -134,7 +188,7 @@ const DashboardContent = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
         <div className="bg-white p-4 rounded shadow">
           <h3 className="text-sm text-gray-500">Total Gigs</h3>
-          <p className="text-2xl font-bold">12</p>
+          <p className="text-2xl font-bold">{gigs.length}</p>
         </div>
         <div className="bg-white p-4 rounded shadow">
           <h3 className="text-sm text-gray-500">Active Orders</h3>
@@ -149,20 +203,33 @@ const DashboardContent = () => {
       <div>
         <h2 className="text-lg font-semibold mb-2">Recent Gigs</h2>
         <div className="bg-white rounded shadow divide-y">
-          {[
-            "UI Design",
-            "React Website",
-            "Logo Design",
-            "UI Design",
-            "React Website",
-            "Logo Design",
-          ].map((gig, idx) => (
+          {gigs.map((gig) => (
             <div
-              key={idx}
+              key={gig._id}
               className="p-4 hover:bg-gray-50 flex justify-between"
             >
-              <span>{gig}</span>
-              <span className="text-green-500 text-sm">Active</span>
+              <span>{gig.title}</span>
+              <div className="flex items-center gap-2">
+                <span
+                  className={`text-sm ${
+                    gig.isActive ? "text-green-500" : "text-red-500"
+                  }`}
+                >
+                  {gig.isActive ? "Active" : "Inactive"}
+                </span>
+                <button
+                  onClick={() => handleToggleGigStatus(gig._id, gig.isActive)}
+                  className="text-blue-500 text-sm"
+                >
+                  {gig.isActive ? "Deactivate" : "Activate"}
+                </button>
+                <button
+                  onClick={() => handleDeleteGig(gig._id)}
+                  className="text-red-500 text-sm"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>
