@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
+import { useUser } from "@/ContextAPI/UserProvider";
 
 const DashboardContent = () => {
   const [open, setOpen] = useState(false);
@@ -60,7 +61,8 @@ const DashboardContent = () => {
       console.error("Failed to add gig", err);
     }
   };
-
+  const {user} = useUser();
+  console.log(user);
   return (
     <div className="max-h-[calc(100vh-78px)] overflow-y-scroll">
       <div className="flex justify-between items-center mb-4">

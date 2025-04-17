@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useUser } from '@/ContextAPI/UserProvider'
 
 const navigation = [
   { name: 'Product', path:"/product" },
@@ -14,6 +15,9 @@ const navigation = [
 
 const Navbar = () => {
  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+ const {logout} = useUser();
+ const token = localStorage.getItem("token")
+ const navigate = useNavigate();
   return (
     <div className="w-full ">
       <header className="absolute  inset-x-0 top-0 z-50">
@@ -57,12 +61,17 @@ const Navbar = () => {
             ))}
           </div>
           <div className="hidden pb-4 lg:flex lg:flex-1 lg:justify-end">
-            <NavLink
-              to={"/login"}
-              className="text-sm/6 font-semibold text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </NavLink>
+            {token ? (
+              <button onClick={()=>logout(navigate)}>Sign out</button>
+            ) : (
+              <NavLink
+                to={"/login"}
+                className="text-sm/6 font-semibold text-gray-900"
+              >
+                Log in
+                <span aria-hidden="true">&rarr;</span>
+              </NavLink>
+            )}
           </div>
         </nav>
         <Dialog
@@ -109,7 +118,7 @@ const Navbar = () => {
                     to={"/login"}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
+                    {token ? "Log out" : "Log in"}
                   </NavLink>
                 </div>
               </div>

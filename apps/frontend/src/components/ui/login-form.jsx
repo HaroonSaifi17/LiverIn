@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,8 +11,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, Lock } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useUser } from "@/ContextAPI/UserProvider";
 
 export function LoginForm({
   className,
@@ -25,7 +26,8 @@ export function LoginForm({
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
+  const {login,user} = useUser();
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
@@ -37,18 +39,17 @@ export function LoginForm({
       );
       onLoginSuccess?.(response.data);
       localStorage.setItem("token", response.data.token);
+      login(response?.data?.user)
+      navigate('/dashboard');
+      
     } catch (err) {
       console.error("Login error:", err);
       setError(
         err.response?.data?.message ||
           "Login failed. Please check your credentials and try again.",
       );
-    } finally {
-      setLoading(false);
-      window.location.href = "/"; // redirect to dashboard
     }
   };
-
   return (
     <div
       className={cn("flex flex-col gap-6 w-full max-w-md", className)}
