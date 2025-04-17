@@ -20,7 +20,20 @@ const DashboardContent = () => {
       <div className="mt-10">
         <h2 className="text-lg font-semibold mb-2">Recent Gigs</h2>
         <div className="bg-white rounded shadow divide-y">
-          {["UI Design", "React Website", "Logo Design"].map((gig, idx) => (
+          {[
+            "UI Design",
+            "React Website",
+            "Logo Design",
+            "UI Design",
+            "React Website",
+            "Logo Design",
+            "UI Design",
+            "React Website",
+            "Logo Design",
+            "UI Design",
+            "React Website",
+            "Logo Design",
+          ].map((gig, idx) => (
             <div
               key={idx}
               className="p-4 hover:bg-gray-50 flex justify-between"

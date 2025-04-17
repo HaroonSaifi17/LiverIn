@@ -47,7 +47,7 @@ const Sidebar = () => {
 
       <aside
         className={`${
-          isOpen ? "block w-full sm:w-64 h-screen" : "hidden"
+          isOpen ? "block w-full h-screen" : "hidden w-56"
         } sm:block bg-white shadow-md p-4 sm:h-screen fixed sm:relative z-10`}
       >
         <nav className="space-y-4 mt-6 sm:mt-0">
@@ -55,7 +55,7 @@ const Sidebar = () => {
             <a
               key={idx}
               href={link.path}
-              className="flex items-center gap-3 p-2 rounded hover:bg-green-100 text-gray-700"
+              className="flex items-center gap-3 p-2 rounded hover:bg-blue-100 text-gray-700"
             >
               <span className="text-xl">{link.icon}</span>
               {link.name}
