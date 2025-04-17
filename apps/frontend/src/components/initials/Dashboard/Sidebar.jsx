@@ -10,18 +10,17 @@ import {
 import { MdClose } from "react-icons/md";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-    useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
-        document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
     } else {
-        document.body.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     }
 
     return () => {
-        document.body.style.overflow = "auto"; // cleanup
+      document.body.style.overflow = "auto"; // cleanup
     };
-    }, [isOpen]);
-
+  }, [isOpen]);
 
   const links = [
     { name: "Dashboard", icon: <AiOutlineDashboard />, path: "/dashboard" },
@@ -39,15 +38,13 @@ const Sidebar = () => {
           onClick={() => setIsOpen(!isOpen)}
           className="text-2xl text-gray-700"
         >
-            {
-                isOpen?<MdClose/> :<AiOutlineMenu/>
-            }
+          {isOpen ? <MdClose /> : <AiOutlineMenu />}
         </button>
       </div>
 
       <aside
         className={`${
-          isOpen ? "block w-full h-screen" : "hidden w-56"
+          isOpen ? "block w-full h-screen " : "hidden w-56"
         } sm:block bg-white shadow-md p-4 sm:h-screen fixed sm:relative z-10`}
       >
         <nav className="space-y-4 mt-6 sm:mt-0">
