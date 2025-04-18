@@ -1,5 +1,6 @@
 import { AiFillStar, AiOutlineHeart, AiOutlineSend } from "react-icons/ai";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const FreelancerCard = ({
   name,
@@ -12,8 +13,28 @@ const FreelancerCard = ({
   price,
   currency = "₹",
   imgUrl,
-  onProfileClick,
 }) => {
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    navigate(`/freelancer-profile/${name.toLowerCase().replace(/\s/g, "-")}`, {
+      state: {
+        freelancer: {
+          name,
+          isPro,
+          rating,
+          reviews,
+          tagline,
+          location,
+          tags,
+          price,
+          currency,
+          imgUrl,
+        },
+      },
+    });
+  };
+
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between border rounded-xl p-8 items-center shadow-sm gap-4 w-full hover:shadow-md hover:bg-blue-50 transition">
       {/* Left */}
@@ -71,7 +92,7 @@ const FreelancerCard = ({
         </div>
 
         <button
-          onClick={onProfileClick}
+          onClick={() => navigate(`/freelancer/${encodeURIComponent(name)}`)}
           className="border px-5 py-3 rounded-md text-sm font-medium bg-blue-400 text-white hover:bg-blue-500"
         >
           See profile

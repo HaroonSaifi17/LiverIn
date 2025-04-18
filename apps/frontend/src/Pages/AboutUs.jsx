@@ -11,7 +11,7 @@ const AboutUs = () => {
           </h1>
           <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto">
             Empowering the future of freelance work through blockchain, verified
-            experience, and instant payments in $SOL.
+            experience, and instant payments in USDT.
           </p>
         </div>
       </section>

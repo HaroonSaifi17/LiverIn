@@ -11,6 +11,7 @@ const Category = () => {
         .join(" ")
         .replace(/\b\w/g, (char) => char.toUpperCase());
         console.log(categoryName);
+    
 
   return (
     <div className="w-11/12 mx-auto">

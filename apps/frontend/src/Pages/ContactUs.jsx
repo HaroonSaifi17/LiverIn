@@ -130,10 +130,10 @@ const ContactUs = () => {
 
             <div>
               <h4 className="font-semibold text-xl mb-2">
-                Can I withdraw my SOL earnings instantly?
+                Can I withdraw my USDT earnings instantly?
               </h4>
               <p className="text-gray-700">
-                Yes. Once a task is verified and completed, SOL payments are
+                Yes. Once a task is verified and completed, USDT payments are
                 processed immediately to your connected wallet.
               </p>
             </div>

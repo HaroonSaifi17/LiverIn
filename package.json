@@ -16,5 +16,8 @@
   "workspaces": [
     "apps/frontend",
     "apps/backend"
-  ]
+  ],
+  "dependencies": {
+    "ethers": "^6.13.5"
+  }
 }

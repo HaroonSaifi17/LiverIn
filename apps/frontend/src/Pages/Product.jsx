@@ -29,7 +29,7 @@ const Product = () => {
               </p>
             </div>
             <div className="border border-[#ccd5ff] p-6 rounded-xl shadow-sm">
-              <h3 className="text-2xl font-semibold mb-2">Earn in SOL</h3>
+              <h3 className="text-2xl font-semibold mb-2">Earn in USDT</h3>
               <p>
                 Get paid in Solana instantly once your task is verified by the
                 client. No delays, no middlemen.
@@ -83,7 +83,7 @@ const Product = () => {
                 <li>Sign up and build your dynamic profile</li>
                 <li>Browse available tasks filtered by your skills</li>
                 <li>Submit work and gain blockchain-stamped credentials</li>
-                <li>Get paid in $SOL and level up your resume</li>
+                <li>Get paid in USDT and level up your resume</li>
               </ul>
             </div>
             <div>
@@ -108,7 +108,7 @@ const Product = () => {
             <div className="bg-[#edf0ff] p-6 rounded-xl shadow">
               <p className="italic">
                 “I landed my first remote gig through WorkAura and the instant
-                SOL payment blew my mind!”
+                USDT payment blew my mind!”
               </p>
               <p className="mt-4 font-semibold">- Priya S., Web3 Developer</p>
             </div>

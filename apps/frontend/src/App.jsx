@@ -11,6 +11,7 @@ import Features from "./Pages/Features";
 import Category from "./Pages/Category";
 import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
+import FreelancerProfile from "./Pages/FreelancerProfile";
 
 const App = () => {
   return (
@@ -18,14 +19,16 @@ const App = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs/>}/>
-        <Route path="/product" element={<Product/>}/>
-        <Route path="/features" element={<Features/>}/>
-        <Route path="/category/:category" element={<Category/>}/>
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/category/:category" element={<Category />} />
       </Route>
+      {/* <Route path="/freelancer-profile/:slug" element={<FreelancerProfile />} /> */}
+      <Route path="/freelancer/:name" element={<FreelancerProfile />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<Dashboard/>}/>
+      <Route path="/dashboard" element={<Dashboard />} />
       {/* Routes without Navbar */}
     </Routes>
   );

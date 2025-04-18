@@ -38,7 +38,7 @@ const Features = () => {
               desc="Clients are algorithmically matched with freelancers whose track record fits their task."
             />
             <FeatureCard
-              title="Instant SOL Payouts"
+              title="Instant USDT Payouts"
               desc="No wait times or transaction delays. Get paid the moment a client verifies the task."
             />
             <FeatureCard

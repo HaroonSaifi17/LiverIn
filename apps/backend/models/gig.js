@@ -12,7 +12,7 @@ const gigSchema = new mongoose.Schema(
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: "category",
       required: true,
     },
     price: {
@@ -20,30 +20,12 @@ const gigSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
-    deliveryTime: {
-      type: Number, // in days
-      required: true,
-    },
-    attachments: [String], // e.g., image URLs or file links
+    attachments: [String], 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    reviews: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-        rating: {
-          type: Number,
-          min: 1,
-          max: 5,
-        },
-        comment: String,
-      },
-    ],
     isActive: {
       type: Boolean,
       default: true,

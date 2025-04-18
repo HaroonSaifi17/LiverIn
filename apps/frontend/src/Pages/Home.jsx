@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { FaRegCircleCheck } from "react-icons/fa6";
 import CurvedPhone from '@/components/ui/CurvedPhone';
+import Chatbot from './Chatbot';
 
 const Home = () => {
   return (
@@ -80,7 +81,7 @@ const Home = () => {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           alt=""
         />
-
+        <Chatbot/>
         {/* Content */}
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-center h-full px-4 sm:px-8 md:px-16">
           <div className="text-white text-center md:text-left md:w-1/2 space-y-4">
@@ -88,7 +89,7 @@ const Home = () => {
               COMPLETE <span className="text-red-700">TASKS!</span>
             </h2>
             <p className="text-base sm:text-lg">
-              Get paid in <span className="text-red-500">$SOL</span>
+              Get paid in <span className="text-red-500">USDT</span>
             </p>
             <div className="flex flex-wrap justify-center md:justify-start gap-2 text-sm">
               <p>✓ No credit card</p>
@@ -228,7 +229,7 @@ const Home = () => {
                 4
               </div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">
-                Get Paid in $SOL
+                Get Paid in USDT
               </h3>
               <p className="mt-2 text-sm text-gray-500">
                 Instantly receive your payout

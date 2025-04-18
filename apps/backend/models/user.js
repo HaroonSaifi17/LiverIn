@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     password: String,
     accountType: {
       type: String,
-      enum: ["freelancer", "recruiter", "client"],
+      enum: ["freelancer", "recruiter"],
       required: true,
     },
     gigs: [
@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
         ref: "Gig",
       },
     ],
+    reviews:[{
+      type:mongoose.Schema.Types.ObjectId,
+      ref: "",
+    }]
   },
   {
     timestamps: true,
